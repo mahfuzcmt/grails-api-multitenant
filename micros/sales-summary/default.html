@@ -1,0 +1,69 @@
+<table style="font-family:Arial, Helvetica, sans-serif; font-size:13px; border: 1px solid #cccccc; width: 780px;" border="0" cellspacing="0" cellpadding="40" align="center" bgcolor="#FFFFFF">
+    <tr><td>
+        <table style="width: 780px;" border="0" cellspacing="0" cellpadding="0" align="center">
+            <tr>
+                <h2 style="text-align: center">%company_name%</h2>
+            </tr>
+            <tr>
+                <td>
+                    <h5 style="text-align: center;">%address%</h5>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 30px 0 0;">
+                    <strong>Report Date: </strong> %dateFrom%
+                    <strong>To</strong>
+                    %dateTo%
+            </tr>
+            <tr>
+                <td colspan="2" style="padding: 30px 0 0;">
+                    <p style="margin: 0px; font-weight: bold; font-family:Arial, Helvetica, sans-serif; font-size:16px;">Counter Sales</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="10" style="padding: 10px 0 0;">
+                    <table style="border-collapse:collapse; width:760px;" border="0" cellspacing="0" cellpadding="0" align="left">
+                        <tr>
+                            <th style="padding:5px; background-color: #3997D6;  border-left: 1px solid #3997D6; border-right: 1px solid #3997D6; border-top: 1px solid #3997D6; color: #FFFFFF; text-align:left;font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:22px;">Counter</th>
+                            <th style="padding:5px; background-color: #3997D6;  border-left: 1px solid #3997D6; border-right: 1px solid #3997D6; border-top: 1px solid #3997D6; color: #FFFFFF; text-align:right;font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:22px;">Sales</th>
+                            <th style="padding:5px; background-color: #3997D6;  border-left: 1px solid #3997D6; border-right: 1px solid #3997D6; border-top: 1px solid #3997D6; color: #FFFFFF; text-align:right;font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:22px;">Reversed</th>
+                            <th style="padding:5px; background-color: #3997D6;  border-left: 1px solid #3997D6; border-right: 1px solid #3997D6; border-top: 1px solid #3997D6; color: #FFFFFF; text-align:right;font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:22px;">Total Sales</th>
+                        </tr>
+                        %each:order_details>items:item:index%
+                        <tr>
+                            <td style="padding:5px; border:1px #e6e6e6 solid; text-align:left;font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:22px;">%item>counterName%</td>
+                            <td style="padding:5px; border:1px #e6e6e6 solid; text-align:right;font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:22px;">%item>totalSales%</td>
+                            <td style="padding:5px; border:1px #e6e6e6 solid; text-align:right;font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:22px;">%item>totalRefund%</td>
+                            <td style="padding:5px; border:1px #e6e6e6 solid; text-align:right;font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:22px;">%item>netSales%</td>
+                        </tr>
+                        %each%
+                        <tr>
+                            <td colspan="1" style="padding: 30px 0 0;">
+                                <p style="margin: 0px; font-weight: bold; font-family:Arial, Helvetica, sans-serif; font-size:13px;text-align:right;">Total</p>
+                            </td>
+                            <td colspan="1" style="padding: 30px 0 0;">
+                                <p style="margin: 0px; font-weight: bold; font-family:Arial, Helvetica, sans-serif; font-size:13px;text-align:right;">%totalSales%</p>
+                            </td>
+                            <td colspan="1" style="padding: 30px 0 0;">
+                                <p style="margin: 0px; font-weight: bold; font-family:Arial, Helvetica, sans-serif; font-size:13px;text-align:right;">%totalRefund%</p>
+                            </td>
+                            <td colspan="1" style="padding: 30px 0 0;">
+                                <p style="margin: 0px; font-weight: bold; font-family:Arial, Helvetica, sans-serif; font-size:13px;text-align:right;">%netSales%</p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr></tr>
+           <br>
+            <tr>
+                <td colspan="1">
+                    <p style="margin-top: 50px;; padding:0; font-family:Arial, Helvetica, sans-serif; font-size:10px; line-height:22px;">
+                        <span>Printed By: </span>%printedBy%
+                         <span style="margin-left: 25px;">Print Date:</span> %printedDate%
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </td></tr>
+</table>

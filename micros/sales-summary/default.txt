@@ -1,0 +1,72 @@
+%store_url%
+
+Dear %customer_name%,
+Thank you for  ordering products from %store_name%. Your order payment  has been completed and we thank you once again for shopping at %store_name%.
+
+Your Order Details:
+-------------------------------------
+Order: %order_id%
+Order date: %order_date%
+
+%if:billing_address%
+Billing Address:
+-------------------------------------
+%billing_address>first_name%%if:billing_address>last_name% %billing_address>last_name% %if%
+%billing_address>address_line1%
+%if:billing_address>city%%billing_address>city%%if%%if:billing_address>state%, %billing_address>state%%if%%if:billing_address>post_code%, %billing_address>post_code%%if%
+%billing_address>country%
+Email: %billing_address>email%
+%if%
+
+%if:shipping_address%
+Shipping Address:
+--------------------------------------
+%shipping_address>first_name%%if:shipping_address>last_name% %shipping_address>last_name% %if%
+%shipping_address>address_line1%
+%if:shipping_address>city%%shipping_address>city%%if%%if:shipping_address>state%, %shipping_address>state%%if%%if:shipping_address>post_code%, %shipping_address>post_code%%if%
+%shipping_address>country%
+Email: %shipping_address>email%
+%if%
+
+Product Details:
+---------------------------------------
+%each:order_details>items:item:index%
+Name: %item>product_name% %item>variations%
+Unit Price: %currency_symbol%%item>price%
+Ordered Quantity: %item>quantity%
+Discount: %currency_symbol%%item>discount%
+TaxPrice: %currency_symbol%%item>total_with_tax_with_discount%
+----------------------------------------
+%each%
+
+Sub Total: %currency_symbol%%order_details>sub_total%
+Total Discount: %currency_symbol%%order_details>total_discount%
+Tax: %currency_symbol%%order_details>total_tax%
+Shipping Cost: %currency_symbol%%order_details>total_shipping_cost%
+Shipping Tax: %currency_symbol%%order_details>shipping_tax%
+Handling Cost: %currency_symbol%%order_details>handling_cost%
+Payment Surcharge: %currency_symbol%%order_details>payment_surcharge%
+Total: %currency_symbol%%order_details>total%
+Paid: %currency_symbol%%order_details>paid%
+Due: %currency_symbol%%order_details>due%
+
+%if:custom_message%
+%each:custom_message:message:index%
+%message%
+%each%
+%if%
+
+%if:order_comment%
+Comment:
+%order_comment%
+%if%
+
+%store_name%
+%store_address_line1%%if:store_address_line2%
+%store_address_line2%%if%%if:store_city%
+%store_city%%if%%if:store_country%
+%store_country%%if%%if:store_phone%
+Phone: %store_phone%%if%%if:store_mobile%
+Mobile: %store_mobile%%if%%if:store_fax%
+Fax: %store_fax%%if%
+Email: %store_email%

@@ -1,0 +1,13 @@
+
+application:
+  base_url: http://45.86.70.142:8080/v3
+  local_base_url: http://localhost
+  static_image: images
+  webapp_location: webapps
+  balance_hide_after_sec: 10
+  developer_company: "Developed by ESoft Technology"
+  complain_text: "Complain: 01612688971"
+  company_mnemonic: "sd"
+  company_name: "Best Shotabdi Transport Limited AC"
+  company_address: "Sector 12 Road #17 A, House #4 level 4 Uttara, Dhaka"
+

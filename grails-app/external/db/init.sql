@@ -1,0 +1,12 @@
+INSERT INTO `role` (`id`, `version`, `created`, `updated`, `menuJson`, `name`, `status`) VALUES
+(1, 0, now(), now(), '{"children":[{"id":"webMenu","url":"webMenu","text":"Web Menu","class":"fa fa-dashboard","enable":true,"children":[{"id":"dashboard","url":"dashboard","text":"Dashboard","class":"fa fa-dashboard","enable":true,"children":[]},{"id":"userlist","url":"userlist","text":"Users","class":"fa fa-user-plus","enable":true,"children":[]},{"id":"report","url":"report","text":"Report","class":"fa fa-file","enable":true,"children":[{"id":"salesreport","url":"salesreport","text":"Sales Report","class":"fa fa-bar-chart","enable":true,"children":[]},{"id":"salessummary","url":"salessummary","text":"Sales Summary","class":"fa fa-list-alt","enable":true,"children":[]},{"id":"userTnx","url":"userTnx","text":"User Tnx","class":"fa fa-bar-chart","enable":true,"children":[]},{"id":"ticketCount","url":"ticketCount","text":"Ticket Count","class":"fa fa-calculator","enable":true,"children":[]},{"id":"refundReport","url":"refundReport","text":"Refund Report","class":"fa fa-undo green","enable":true,"children":[]}]},{"id":"settings","url":"settings","text":"Settings","class":"fas fa-cogs","enable":true,"children":[{"id":"Counterlist","url":"counterlist","text":"Counter","class":"fas fa-bus","enable":true,"children":[]},{"id":"routelist","url":"routelist","text":"Route","class":"fas fa-road","enable":true,"children":[]},{"id":"refund","url":"refund","text":"Refund","class":"fa fa-undo","enable":true,"children":[]}]}]}]}', 'Admin', 'Active');
+INSERT INTO `role` (`id`, `version`, `created`, `updated`, `menuJson`, `name`, `status`) VALUES
+(2, 0, now(), now(), '', 'Collector', 'Active');
+
+INSERT INTO `user` (`id`, `version`, `created`, `updated`, `role_id`, `respective_counter_id`, `password`, `user_name`, `contact_no`, `status`, `full_name`) VALUES
+(1, 0, '2019-08-23 00:00:00', '2019-08-23 00:00:00', 1, 1, '123', 'mahfuz', '01975585960', 'Active', 'Mahfuz Ahmed');
+
+
+INSERT INTO `client` (`id`, `version`, `created`, `address`, `updated`, `name`, `status`, `description`, `complain_text`, `credit_text`, `tenant_id`, `contact_no`) VALUES
+(1, 0, now()now(), 'Dhaka 1201', now()now(), 'T1 Company Ltd', 'Active', NULL, NULL, NULL, 't1', NULL),
+(2, 0, now()now(), 'Dhaka 1202', now()now(), 'T2 Company Ltd', 'Active', NULL, NULL, NULL, 't2', NULL);

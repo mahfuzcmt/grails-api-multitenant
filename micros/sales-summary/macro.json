@@ -1,0 +1,18 @@
+ {
+  "order_date": "order.date",
+  "fare": "customer.name",
+  "order_details" : {
+    "label": "order.details",
+    "fields": {
+      "items": {
+        "fields": {
+          "product_name": "product.name",
+          "item_number": "product.sku",
+          "is_downloadable": "is.downloadable"
+        }
+      },
+      "sub_total": "sub.total",
+      "total_discount": "total.discount"
+    }
+  }
+}
