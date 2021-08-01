@@ -1,10 +1,10 @@
 package com.bitsoft.st.security
 
-import com.bitsoft.st.Role
+
 import com.bitsoft.st.User
-import com.bitsoft.st.utils.AppConstant
 import grails.gorm.MultiTenant
 
+import java.time.Instant
 
 class OperationLog implements MultiTenant<OperationLog> {
 

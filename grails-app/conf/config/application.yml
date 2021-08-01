@@ -8,11 +8,11 @@ environments:
       username: root
       password: ''
       dbCreate: update
-      url: jdbc:mysql://localhost/main?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+      url: jdbc:mysql://localhost/tracking-main?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
 
     dataSources:
-      demo:
-        url: "jdbc:mysql://localhost/demo?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC&autoReconnect=true"
+      tenant-1:
+        url: "jdbc:mysql://localhost/tenant-1?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC&autoReconnect=true"
       tenant-2:
         url: "jdbc:mysql://localhost/tenant-2?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC&autoReconnect=true"
 
@@ -30,7 +30,7 @@ environments:
       username: bitsoft
       password: "bitSoft@123"
       dbCreate: update
-      url: "jdbc:mysql://localhost/main?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC&autoReconnect=true"
+      url: "jdbc:mysql://localhost/tracking-main?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC&autoReconnect=true"
       properties:
         jmxEnabled: true
         initialSize: 5
@@ -51,7 +51,7 @@ environments:
         defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
 
     dataSources:
-      demo:
-        url: "jdbc:mysql://localhost/demo?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC&autoReconnect=true"
+      tenant-1:
+        url: "jdbc:mysql://localhost/tenant-1?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC&autoReconnect=true"
       tenant-2:
       url: "jdbc:mysql://localhost/tenant-2?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC&autoReconnect=true"

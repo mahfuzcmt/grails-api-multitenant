@@ -3,7 +3,7 @@ package com.bitsoft.st.utils
 import grails.testing.services.ServiceUnitTest
 import spock.lang.Specification
 
-class SalesCollectionJobServiceSpec extends Specification implements ServiceUnitTest<SalesCollectionJobService>{
+class DailyJobServiceSpec extends Specification implements ServiceUnitTest<DailyJobService>{
 
     def setup() {
     }

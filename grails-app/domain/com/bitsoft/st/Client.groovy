@@ -12,14 +12,13 @@ class Client {
     String description
     String complainText
     String creditText
-    String ticketDateFormat = "dd-MM-yyyy hh:mm:ss aa"
+    String subscriptionPackage
     String status = AppConstant.STATUS.ACTIVE
-    String category = AppConstant.CLIENT_CATEGORY.BUS
 
-    Integer hideSalesAmountAfterInSec = 10
-    Integer syncSalesDataInMin = 15
-    Integer reportPrintLimit = 6
+    Integer syncLocInMin = 15
+    Integer userLimit = 50
 
+    Date subscriptionStartDate
     Date created
     Date updated
 
@@ -32,6 +31,8 @@ class Client {
         complainText(nullable: true)
         creditText(nullable: true)
         status(nullable: true)
+        subscriptionPackage(nullable: true)
+        subscriptionStartDate(nullable: true)
     }
 
     def beforeUpdate = {

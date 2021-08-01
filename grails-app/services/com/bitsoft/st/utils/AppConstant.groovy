@@ -204,7 +204,7 @@ class AppConstant {
                 TICKET_CREDIT                 : "ticketCredit",
                 TICKET_DATE_FORMAT            : "ticketDateFormat",
                 SYNC_SALES_DATAINMIN          : "syncSalesDataInMin",
-                REPORT_PRINT_LIMIT            : "reportPrintLimit",
+                LIMIT                         : "limit",
                 HIDE_SALES_AMOUNT_AFTER_IN_SEC: "hideSalesAmountAfterInSec",
         ]
     }
