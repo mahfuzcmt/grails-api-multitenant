@@ -1,13 +1,57 @@
+environments:
+  development:
+    # tag::dataSources[]
+    dataSource:
+      pooled: true
+      jmxExport: true
+      driverClassName: com.mysql.jdbc.Driver
+      username: root
+      password: ''
+      dbCreate: update
+      url: jdbc:mysql://localhost/main?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
 
-application:
-  base_url: http://45.86.70.142:8080/v3
-  local_base_url: http://localhost
-  static_image: images
-  webapp_location: webapps
-  balance_hide_after_sec: 10
-  developer_company: "Developed by ESoft Technology"
-  complain_text: "Complain: 01612688971"
-  company_mnemonic: "sd"
-  company_name: "Best Shotabdi Transport Limited AC"
-  company_address: "Sector 12 Road #17 A, House #4 level 4 Uttara, Dhaka"
+    dataSources:
+      demo:
+        url: "jdbc:mysql://localhost/demo?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC&autoReconnect=true"
+      tenant-2:
+        url: "jdbc:mysql://localhost/tenant-2?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC&autoReconnect=true"
 
+  # end::dataSources[]
+
+  test:
+    dataSource:
+      dbCreate: update
+      url: jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+  production:
+    dataSource:
+      pooled: true
+      jmxExport: true
+      driverClassName: com.mysql.cj.jdbc.Driver
+      username: bitsoft
+      password: "bitSoft@123"
+      dbCreate: update
+      url: "jdbc:mysql://localhost/main?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC&autoReconnect=true"
+      properties:
+        jmxEnabled: true
+        initialSize: 5
+        maxActive: 200
+        minIdle: 5
+        maxIdle: 25
+        maxWait: 10000
+        maxAge: 600000
+        timeBetweenEvictionRunsMillis: 5000
+        minEvictableIdleTimeMillis: 60000
+        validationQuery: SELECT 1
+        validationQueryTimeout: 3
+        validationInterval: 15000
+        testOnBorrow: true
+        testWhileIdle: true
+        testOnReturn: false
+        jdbcInterceptors: ConnectionState
+        defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
+
+    dataSources:
+      demo:
+        url: "jdbc:mysql://localhost/demo?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC&autoReconnect=true"
+      tenant-2:
+      url: "jdbc:mysql://localhost/tenant-2?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC&autoReconnect=true"
