@@ -1,17 +1,11 @@
 package com.bitsoft.st.utils
 
-import com.bitsoft.st.AppUtilService
-import com.bitsoft.st.KounterService
-import com.bitsoft.st.Sales
 import com.bitsoft.st.utils.JavaShell.ShellRunner
 import grails.converters.JSON
 import grails.util.Environment
 import javax.activation.MimetypesFileTypeMap
 
 class DocumentService {
-
-     AppUtilService appUtilService
-     KounterService kounterService
 
      static String rootPathOfProd =  AppConstant.rootPathOfProd
 

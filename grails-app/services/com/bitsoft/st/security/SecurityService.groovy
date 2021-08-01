@@ -1,16 +1,10 @@
 package com.bitsoft.st.security
 
-import com.bitsoft.st.Kounter
 import com.bitsoft.st.Role
-import com.bitsoft.st.Route
-import com.bitsoft.st.SalesTrace
-import com.bitsoft.st.TripInfo
 import com.bitsoft.st.User
 import com.bitsoft.st.UserService
-import com.bitsoft.st.route.TripService
 import com.bitsoft.st.utils.AppConstant
 import com.bitsoft.st.utils.AppUtil
-import com.bitsoft.st.utils.DateTimeUtil
 import grails.gorm.multitenancy.CurrentTenant
 import grails.gorm.transactions.Transactional
 import groovy.json.JsonSlurper
@@ -21,50 +15,12 @@ import org.apache.commons.lang.RandomStringUtils
 class SecurityService {
 
     UserService userService
-    TripService tripService
 
     Map<Long, String> authTokenMap = [:]
 
     def generateToken() {
         return RandomStringUtils.random(32, true, true)
     }
-
-    Long getMaxSerialNo(Kounter kounter, User user) {
-        SalesTrace.createCriteria().list {
-            eq("salesDate", DateTimeUtil.getFormattedDate(new Date(), "dd-MM-yyyy"))
-            eq("counter.id", kounter.id)
-            eq("user.id", user.id)
-        }?.max { it.lastSerialNo }?.lastSerialNo ?: 0
-    }
-
-    List getRoutesByUserId(Long userid) {
-        List availableRoutes = []
-        User user = userService.getUserById(userid)
-        if (user && user.respectiveCounterId) {
-            Kounter kounter = Kounter.findByIdAndStatus(user.respectiveCounterId, AppConstant.STATUS.ACTIVE)
-            if (kounter) {
-                kounter.routes.each { Route route ->
-                    Map newRoute = [:]
-                    if (route.status.equals(AppConstant.STATUS.ACTIVE)) {
-                        newRoute.routeId = route.id
-                        newRoute.name = route.name
-                        newRoute.tripType = route.tripType
-                        newRoute.colorCode = route.colorCode
-                        newRoute.fromLocation = route.fromLocation
-                        newRoute.toLocation = route.toLocation
-                        newRoute.fare = route.fare
-                        availableRoutes.add(newRoute)
-                    }
-                }
-                availableRoutes
-            }
-        }
-        if(AppUtil.session[AppConstant.SESSION_ATTRIBUTE.CATEGORY].equals(AppConstant.CLIENT_CATEGORY.LAUNCH)){
-            availableRoutes = availableRoutes.groupBy {it.tripType}
-        }
-        return availableRoutes
-    }
-
 
     def getUserPublicInfo(User user) {
         def userInfo = [:]
@@ -77,53 +33,6 @@ class SecurityService {
             userInfo.userName = user.userName
             userInfo.contact = user.contactNo
             userInfo.isWayBillFeatureEnabled = user.isWayBillFeatureEnabled
-            if (!user.role) {
-                Kounter kounter = Kounter.findByIdAndStatus(user.respectiveCounterId, AppConstant.STATUS.ACTIVE)
-                if (kounter) {
-                    def availableRoutes = []
-                    def availableUpRoutes = []
-                    def availableDownRoutes = []
-                    kounter.routes.each { Route route ->
-                        Map newRoute = [:]
-                        if (route.status.equals(AppConstant.STATUS.ACTIVE)) {
-                            newRoute.routeId = route.id
-                            newRoute.name = route.name
-                            newRoute.tripType = route.tripType
-                            newRoute.colorCode = route.colorCode
-                            newRoute.fromLocation = route.fromLocation
-                            newRoute.toLocation = route.toLocation
-                            newRoute.fare = route.fare
-                            availableRoutes.add(newRoute)
-                            if (route.tripType.equals(AppConstant.TRIP_TYPE.UP)) {
-                                availableUpRoutes.add(newRoute)
-                            } else {
-                                availableDownRoutes.add(newRoute)
-                            }
-                        }
-                    }
-                    TripInfo tripInfo = tripService.getCurrentTrip()
-                    userInfo.currentTripNo = 1
-                    if (tripInfo) {
-                        userInfo.currentTripNo = tripInfo.tripNo
-                        userInfo.tripDate = tripInfo.startDate
-                    }
-                    userInfo.counterId = kounter.id
-                    userInfo.tripType = kounter.tripType
-                    userInfo.serialNo = getMaxSerialNo(kounter, user)
-                    userInfo.availableRoutes = availableRoutes
-                    userInfo.availableUpRoutes = availableUpRoutes
-                    userInfo.availableDownRoutes = availableDownRoutes
-                    userInfo.companyName = AppUtil.session[AppConstant.SESSION_ATTRIBUTE.COMPANY_NAME]
-                    userInfo.companyAddress = AppUtil.session[AppConstant.SESSION_ATTRIBUTE.COMPANY_ADDRESS]
-                    userInfo.creditText = AppUtil.session[AppConstant.SESSION_ATTRIBUTE.TICKET_CREDIT]
-                    userInfo.complainText = AppUtil.session[AppConstant.SESSION_ATTRIBUTE.COMPLAIN_TEXT]
-                    userInfo.ticketDateFormat = AppUtil.session[AppConstant.SESSION_ATTRIBUTE.TICKET_DATE_FORMAT]
-                    userInfo.hideSalesAmountAfterInSec = AppUtil.session[AppConstant.SESSION_ATTRIBUTE.HIDE_SALES_AMOUNT_AFTER_IN_SEC]
-                    userInfo.syncSalesDataInMin = AppUtil.session[AppConstant.SESSION_ATTRIBUTE.SYNC_SALES_DATAINMIN]
-                    userInfo.reportPrintLimit = AppUtil.session[AppConstant.SESSION_ATTRIBUTE.REPORT_PRINT_LIMIT]
-                }
-            }
-
             String token = generateToken()
             authTokenMap.put(user.id, token)
             userInfo.authToken = token
